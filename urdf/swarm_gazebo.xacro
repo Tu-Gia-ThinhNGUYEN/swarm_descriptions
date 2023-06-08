@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="swarm_descriptions" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:arg name="laser_visual" default="false"/>
-  <xacro:arg name="imu_visual"   default="false"/>
+  <xacro:arg name="laser_visual" default="false" />
+  <xacro:arg name="imu_visual" default="false" />
 
   <gazebo reference="base_link">
     <material>Gazebo/DarkGrey</material>
@@ -47,28 +47,6 @@
     <material>Gazebo/FlatBlack</material>
   </gazebo>
 
-  <gazebo>
-    <plugin name="turtlebot3_burger_controller" filename="libgazebo_ros_diff_drive.so">
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <odometrySource>world</odometrySource>
-      <publishOdomTF>true</publishOdomTF>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
-      <publishWheelTF>false</publishWheelTF>
-      <publishTf>true</publishTf>
-      <publishWheelJointState>true</publishWheelJointState>
-      <legacyMode>false</legacyMode>
-      <updateRate>30</updateRate>
-      <leftJoint>wheel_left_joint</leftJoint>
-      <rightJoint>wheel_right_joint</rightJoint>
-      <wheelSeparation>0.160</wheelSeparation>
-      <wheelDiameter>0.066</wheelDiameter>
-      <wheelAcceleration>1</wheelAcceleration>
-      <wheelTorque>10</wheelTorque>
-      <rosDebugLevel>na</rosDebugLevel>
-    </plugin>
-  </gazebo>
 
   <gazebo>
     <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
@@ -131,19 +109,4 @@
       </plugin>
     </sensor>
   </gazebo>
-
-  <gazebo>
-			<plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
-    				<alwaysOn>true</alwaysOn>
-    				<updateRate>50.0</updateRate>
-    				<bodyName>base_footprint</bodyName>
-   				<topicName>base_pose_ground_truth</topicName>
-    				<gaussianNoise>0.01</gaussianNoise>
-    				<frameName>world</frameName>
-    				<xyzOffsets>0 0 0</xyzOffsets>
-   				<rpyOffsets>0 0 0</rpyOffsets>
- 			</plugin>
-
-		</gazebo>
-
 </robot>

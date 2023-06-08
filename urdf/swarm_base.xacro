@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="swarm_base" xmlns:xacro="http://ros.org/wiki/xacro">
+    <macro name="swarm_base">
+        <link name="base_footprint" />
+        <joint name="base_joint" type="fixed">
+            <parent link="base_footprint" />
+            <child link="base_link" />
+            <origin xyz="0.0 0.0 0.010" rpy="0 0 0" />
+        </joint>
+        <!-- Base link -->
+        <link
+            name="base_link">
+            <inertial>
+                <origin
+                    xyz="0.01267728125637 5.20063766334955E-06 0.0462944934862715"
+                    rpy="0 0 0" />
+                <mass
+                    value="0.180914682543714" />
+                <inertia
+                    ixx="0.000220908293497034"
+                    ixy="-5.21549197182762E-21"
+                    ixz="1.40827488155254E-20"
+                    iyy="0.000286052367311795"
+                    iyz="6.3634090739951E-21"
+                    izz="0.000240491067161195" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/base_link.STL" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                        rgba="0.619607843137255 0.411764705882353 0.2 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/base_link.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <!-- Base scan -->
+        <link
+            name="base_scan">
+            <inertial>
+                <origin
+                    xyz="0.00676832715317712 -9.17768374699285E-05 -0.0219378521073858"
+                    rpy="0 0 0" />
+                <mass
+                    value="1.33041048124832" />
+                <inertia
+                    ixx="0.000614736954229148"
+                    ixy="-8.00271259590374E-07"
+                    ixz="0.000158189979278382"
+                    iyy="0.000960497023041249"
+                    iyz="-3.09603626647979E-06"
+                    izz="0.00109812375363565" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Laser_Link.STL" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                        rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Laser_Link.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint
+            name="scan_joint"
+            type="fixed">
+            <origin
+                xyz="0.012445 2.49999999999487E-05 0.162017592572946"
+                rpy="0 0 0" />
+            <parent
+                link="base_link" />
+            <child
+                link="base_scan" />
+            <axis
+                xyz="0 0 0" />
+        </joint>
+        <!-- Right wheel -->
+        <link
+            name="wheel_right_link">
+            <inertial>
+                <origin
+                    xyz="-1.6662761448405E-11 0.00153990775115254 8.09391442757601E-10"
+                    rpy="0 0 0" />
+                <mass
+                    value="0.0351748276981308" />
+                <inertia
+                    ixx="1.52374631575614E-05"
+                    ixy="-5.8863308574066E-15"
+                    ixz="3.70003685728499E-10"
+                    iyy="2.57858861550235E-05"
+                    iyz="-8.01164843482923E-14"
+                    izz="1.52367993678117E-05" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Right_Link.STL" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                        rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Right_Link.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint
+            name="wheel_right_joint"
+            type="continuous">
+            <origin
+                xyz="0 -0.06745 0.000117592572945441"
+                rpy="0 0 0" />
+            <parent
+                link="base_link" />
+            <child
+                link="wheel_right_link" />
+            <!--  0 -1 0 -->
+            <axis
+                xyz="0 1 0" />
+        </joint>
+        <!-- Left wheel -->
+        <link
+            name="wheel_left_link">
+            <inertial>
+                <origin
+                    xyz="4.2876725087071E-10 -0.00153990775115266 -6.86695617035937E-10"
+                    rpy="0 0 0" />
+                <mass
+                    value="0.0351748276981322" />
+                <inertia
+                    ixx="1.52376034131887E-05"
+                    ixy="4.87494015510474E-14"
+                    ixz="1.55341040666148E-10"
+                    iyy="2.57858861550243E-05"
+                    iyz="-6.38497912043548E-14"
+                    izz="1.52366591121853E-05" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Left_Link.STL" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                        rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Left_Link.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint
+            name="wheel_left_joint"
+            type="continuous">
+            <origin
+                xyz="0 0.0674499999999999 0.000117592572945246"
+                rpy="0 0 0" />
+            <parent
+                link="base_link" />
+            <child
+                link="wheel_left_link" />
+            <!-- 0 -1 0 -->
+            <axis
+                xyz="0 1 0" />
+        </joint>
+        <!-- Caster wheel -->
+        <link
+            name="caster_back_link">
+            <inertial>
+                <origin
+                    xyz="5.93969318174459E-15 8.02136135291676E-15 0.00867392709143563"
+                    rpy="0 0 0" />
+                <mass
+                    value="0.00198747155715615" />
+                <inertia
+                    ixx="5.7426031556466E-08"
+                    ixy="5.3468134776925E-12"
+                    ixz="-2.52857309078266E-20"
+                    iyy="3.91335560100103E-08"
+                    iyz="-3.50830277259415E-20"
+                    izz="6.23840461880545E-08" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Caster_Link.STL" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                        rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://swarm_descriptions/meshes/Caster_Link.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint
+            name="caster_back_joint"
+            type="fixed">
+            <origin
+                xyz="0.0925499999999999 0 -0.0338824074270547"
+                rpy="0 0 0" />
+            <parent
+                link="base_link" />
+            <child
+                link="caster_back_link" />
+            <axis
+                xyz="0 0 0" />
+        </joint>
+        <!-- IMU -->
+        <joint name="imu_joint" type="fixed">
+            <parent link="base_link" />
+            <child link="imu_link" />
+            <origin xyz="-0.032 0 0.068" rpy="0 0 0" />
+        </joint>
+
+        <link name="imu_link" />
+        <gazebo>
+            <plugin name="swarm_controller" filename="libgazebo_ros_diff_drive.so">
+                <commandTopic>cmd_vel</commandTopic>
+                <odometryTopic>odom</odometryTopic>
+                <odometryFrame>odom</odometryFrame>
+                <odometryRate>20.0</odometryRate>
+                <odometrySource>world</odometrySource>
+                <publishOdomTF>true</publishOdomTF>
+                <robotBaseFrame>base_footprint</robotBaseFrame>
+                <publishWheelTF>false</publishWheelTF>
+                <publishTf>true</publishTf>
+                <publishWheelJointState>true</publishWheelJointState>
+                <legacyMode>false</legacyMode>
+                <updateRate>30</updateRate>
+                <leftJoint>wheel_left_joint</leftJoint>
+                <rightJoint>wheel_right_joint</rightJoint>
+                <wheelSeparation>0.160</wheelSeparation>
+                <wheelDiameter>0.066</wheelDiameter>
+                <wheelAcceleration>1</wheelAcceleration>
+                <wheelTorque>10</wheelTorque>
+                <rosDebugLevel>na</rosDebugLevel>
+            </plugin>
+            <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50.0</updateRate>
+                <bodyName>base_footprint</bodyName>
+                <topicName>base_pose_ground_truth</topicName>
+                <gaussianNoise>0.01</gaussianNoise>
+                <frameName>world</frameName>
+                <xyzOffsets>0 0 0</xyzOffsets>
+                <rpyOffsets>0 0 0</rpyOffsets>
+            </plugin>
+        </gazebo>
+    </macro>
+</robot>
